@@ -58,6 +58,10 @@ app.use('/', summaryRoutes);
 const submitRoutes = require('./routes/submit');
 app.use('/', submitRoutes);
 
+// Next Steps route (Iteration 7)
+const nextStepsRoutes = require('./routes/nextSteps');
+app.use('/', nextStepsRoutes);
+
 // 404 handler (kept minimal for iteration 1)
 app.use((req, res) => {
   res.status(404).json({ error: 'Not Found' });
