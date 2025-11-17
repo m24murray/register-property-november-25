@@ -1,0 +1,38 @@
+{% extends "layout.njk" %}
+{% block content %}
+  <h2 class="mb-3">Address details</h2>
+  <p class="mb-4">Enter the property address details.</p>
+
+  {% if errors and (errors | length) > 0 %}
+    {% include "partials/form-errors.njk" %}
+  {% endif %}
+
+  <form method="post" novalidate>
+    <div class="mb-3">
+      <label for="addressLine1" class="form-label">Address line 1 *</label>
+      <input type="text" class="form-control {% if errors.addressLine1 %}is-invalid{% endif %}" id="addressLine1" name="addressLine1" value="{{ data.addressLine1 | default('') }}">
+      {% if errors.addressLine1 %}<div class="invalid-feedback">{{ errors.addressLine1 }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="addressLine2" class="form-label">Address line 2 (optional)</label>
+      <input type="text" class="form-control {% if errors.addressLine2 %}is-invalid{% endif %}" id="addressLine2" name="addressLine2" value="{{ data.addressLine2 | default('') }}">
+      {% if errors.addressLine2 %}<div class="invalid-feedback">{{ errors.addressLine2 }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="townOrCity" class="form-label">Town or city *</label>
+      <input type="text" class="form-control {% if errors.townOrCity %}is-invalid{% endif %}" id="townOrCity" name="townOrCity" value="{{ data.townOrCity | default('') }}">
+      {% if errors.townOrCity %}<div class="invalid-feedback">{{ errors.townOrCity }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="county" class="form-label">County (optional)</label>
+      <input type="text" class="form-control {% if errors.county %}is-invalid{% endif %}" id="county" name="county" value="{{ data.county | default('') }}">
+      {% if errors.county %}<div class="invalid-feedback">{{ errors.county }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="postcode" class="form-label">Postcode *</label>
+      <input type="text" class="form-control {% if errors.postcode %}is-invalid{% endif %}" id="postcode" name="postcode" value="{{ data.postcode | default('') }}">
+      {% if errors.postcode %}<div class="invalid-feedback">{{ errors.postcode }}</div>{% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Continue</button>
+  </form>
+{% endblock %}

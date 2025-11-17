@@ -1,0 +1,33 @@
+{% extends "layout.njk" %}
+{% block content %}
+  <h2 class="mb-3">Contact details</h2>
+  <p class="mb-4">Enter your contact information.</p>
+
+  {% if errors and (errors | length) > 0 %}
+    {% include "partials/form-errors.njk" %}
+  {% endif %}
+
+  <form method="post" novalidate>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First name *</label>
+      <input type="text" class="form-control {% if errors.firstName %}is-invalid{% endif %}" id="firstName" name="firstName" value="{{ data.firstName | default('') }}">
+      {% if errors.firstName %}<div class="invalid-feedback">{{ errors.firstName }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last name *</label>
+      <input type="text" class="form-control {% if errors.lastName %}is-invalid{% endif %}" id="lastName" name="lastName" value="{{ data.lastName | default('') }}">
+      {% if errors.lastName %}<div class="invalid-feedback">{{ errors.lastName }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email *</label>
+      <input type="email" class="form-control {% if errors.email %}is-invalid{% endif %}" id="email" name="email" value="{{ data.email | default('') }}">
+      {% if errors.email %}<div class="invalid-feedback">{{ errors.email }}</div>{% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone (optional)</label>
+      <input type="text" class="form-control {% if errors.phone %}is-invalid{% endif %}" id="phone" name="phone" value="{{ data.phone | default('') }}">
+      {% if errors.phone %}<div class="invalid-feedback">{{ errors.phone }}</div>{% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Continue</button>
+  </form>
+{% endblock %}
